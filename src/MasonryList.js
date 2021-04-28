@@ -63,7 +63,9 @@ export default class MasonryList extends React.PureComponent {
 		onEndReached: PropTypes.func,
 		onEndReachedThreshold: PropTypes.number,
         refreshing: PropTypes.bool,
-        onRefresh: PropTypes.func
+        onRefresh: PropTypes.func,
+		ListHeaderComponent: PropTypes.node,
+		ListFooterComponent: PropTypes.node,
 	};
 
 	state = {
@@ -633,7 +635,8 @@ export default class MasonryList extends React.PureComponent {
 							spacing={this.props.spacing}
 							key={`MASONRY-COLUMN-${index}`}
 							colIndex={index}
-
+							ListHeaderComponent={index === 0 && this.props.ListHeaderComponent}
+							ListFooterComponent={index === 0 && this.props.ListFooterComponent}
 							customImageComponent={this.props.customImageComponent}
 							customImageProps={this.props.customImageProps}
 							completeCustomComponent={this.props.completeCustomComponent}
