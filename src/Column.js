@@ -38,6 +38,8 @@ export default class Column extends React.PureComponent {
 			PropTypes.func,
 			PropTypes.node
 		]),
+		ListHeaderComponent: PropTypes.node,
+		ListFooterComponent: PropTypes.node,
 	};
 
 	_renderItem = ({item, index}) => {
@@ -110,6 +112,8 @@ export default class Column extends React.PureComponent {
 				initialNumToRender={this.props.initialNumInColsToRender}
 				removeClippedSubviews={true}
 				renderItem={this._renderItem}
+				ListHeaderComponent={this.props.ListHeaderComponent}
+				ListFooterComponent={this.props.ListFooterComponent}
 			/>
 		);
 	}
