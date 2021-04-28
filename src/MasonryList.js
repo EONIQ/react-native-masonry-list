@@ -64,8 +64,11 @@ export default class MasonryList extends React.PureComponent {
 		onEndReachedThreshold: PropTypes.number,
         refreshing: PropTypes.bool,
         onRefresh: PropTypes.func,
-		ListHeaderComponent: PropTypes.node,
-		ListFooterComponent: PropTypes.node,
+
+		columnHeaders: PropTypes.arrayOf(PropTypes.node),
+		columnHeaderStyles: PropTypes.arrayOf(PropTypes.object),
+		columnFooters: PropTypes.arrayOf(PropTypes.node),
+		columnFooterStyles: PropTypes.arrayOf(PropTypes.object),
 	};
 
 	state = {
@@ -624,6 +627,24 @@ export default class MasonryList extends React.PureComponent {
 				}}
 				data={this.state._sortedData}
 				renderItem={({ item, index }) => {
+					let ListHeaderComponent;
+					let ListHeaderComponentStyle;
+					let ListFooterComponent;
+					let ListFooterComponentStyle;
+
+					if (this.props.columnHeaders.length > index) {
+						ListHeaderComponent = this.props.columnHeaders[index];
+					}
+					if (this.props.columnHeaderStyles.length > index) {
+						ListHeaderComponentStyle = this.props.columnHeaderStyles[index];
+					}
+					if (this.props.columnFooters.length > index) {
+						ListFooterComponent = this.props.columnFooters[index];
+					}
+					if (this.props.columnFooters.length > index) {
+						ListFooterComponentStyle = this.props.columnFooterStyles[index];
+					}
+
 					return (
 						<Column
 							data={item}
@@ -635,8 +656,12 @@ export default class MasonryList extends React.PureComponent {
 							spacing={this.props.spacing}
 							key={`MASONRY-COLUMN-${index}`}
 							colIndex={index}
-							ListHeaderComponent={index === 0 && this.props.ListHeaderComponent}
-							ListFooterComponent={index === 0 && this.props.ListFooterComponent}
+							
+							ListHeaderComponent={ListHeaderComponent}
+							ListHeaderComponentStyle={ListHeaderComponentStyle}
+							ListFooterComponent={ListFooterComponent}
+							ListFooterComponentStyle={ListFooterComponentStyle}
+
 							customImageComponent={this.props.customImageComponent}
 							customImageProps={this.props.customImageProps}
 							completeCustomComponent={this.props.completeCustomComponent}

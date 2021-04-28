@@ -34,6 +34,12 @@ class Masonry extends React.PureComponent {
             PropTypes.func,
             PropTypes.node
         ]),
+
+        columnHeaders: PropTypes.arrayOf(PropTypes.node),
+        columnHeaderStyles: PropTypes.arrayOf(PropTypes.object),
+        columnFooters: PropTypes.arrayOf(PropTypes.node),
+        columnFooterStyles: PropTypes.arrayOf(PropTypes.object),
+
         masonryFlatListColProps: PropTypes.object,
         rerender: PropTypes.bool,
 
@@ -228,6 +234,12 @@ class Masonry extends React.PureComponent {
                     listContainerStyle={this.props.listContainerStyle}
                     renderIndividualHeader={this.props.renderIndividualHeader}
                     renderIndividualFooter={this.props.renderIndividualFooter}
+
+                    columnHeaders={this.props.columnHeaders}
+                    columnHeaderStyles={this.props.columnHeaderStyles}
+                    columnFooters={this.props.columnFooters}
+                    columnFooterStyles={this.props.columnFooterStyles}
+
                     masonryFlatListColProps={this.props.masonryFlatListColProps}
 
                     customImageComponent={this.props.customImageComponent}
