@@ -13,7 +13,9 @@ import {
 	setItemSource,
 	getImageSource,
 	getImageUri,
-	insertIntoColumn
+	insertIntoColumn,
+	isReactComponent,
+    isElement
 } from "./utils";
 
 export default class MasonryList extends React.PureComponent {
