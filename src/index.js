@@ -63,6 +63,10 @@ class Masonry extends React.PureComponent {
             PropTypes.func,
             PropTypes.node
         ]),
+        loadingView: PropTypes.oneOfType([
+            PropTypes.func,
+            PropTypes.node
+        ]),
         onEndReached: PropTypes.func,
         onEndReachedThreshold: PropTypes.number,
         refreshing: PropTypes.bool,
@@ -239,6 +243,7 @@ class Masonry extends React.PureComponent {
                     columnHeaderStyles={this.props.columnHeaderStyles}
                     columnFooters={this.props.columnFooters}
                     columnFooterStyles={this.props.columnFooterStyles}
+                    loadingView={this.props.loadingView}
 
                     masonryFlatListColProps={this.props.masonryFlatListColProps}
 

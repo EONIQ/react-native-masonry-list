@@ -69,6 +69,10 @@ export default class MasonryList extends React.PureComponent {
 		columnHeaderStyles: PropTypes.arrayOf(PropTypes.object),
 		columnFooters: PropTypes.arrayOf(PropTypes.node),
 		columnFooterStyles: PropTypes.arrayOf(PropTypes.object),
+		loadingView: PropTypes.oneOfType([
+            PropTypes.func,
+            PropTypes.node
+        ]),
 	};
 
 	state = {
@@ -600,6 +604,24 @@ export default class MasonryList extends React.PureComponent {
 	}
 
 	render() {
+		if (
+			this.props.loadingView != null &&
+			this.props.images != null &&
+			this.props.images.length !== 0 &&
+			this.state._sortedData != null &&
+			this.state._sortedData.length === 0
+		) {
+			if (isReactComponent(this.props.loadingView)) {
+					return React.createElement(this.props.loadingView);
+			}
+			else if (typeof this.props.loadingView === "function") {
+					return this.props.loadingView();
+			}
+			else if (isElement(this.props.loadingView)) {
+					return this.props.loadingView;
+			}
+		}
+
 		return (
 			<FlatList
 				style={{
