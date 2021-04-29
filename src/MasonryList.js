@@ -694,7 +694,7 @@ export default class MasonryList extends React.PureComponent {
 							key={`MASONRY-COLUMN-${index}`}
 							colIndex={index}
 							
-							masonryFlatListColProps={masonryFlatListColProps}
+							masonryFlatListColProps={this.props.masonryFlatListColProps}
 							ListHeaderComponent={ListHeaderComponent}
 							ListHeaderComponentStyle={ListHeaderComponentStyle}
 							ListFooterComponent={ListFooterComponent}
