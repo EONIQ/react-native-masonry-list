@@ -656,16 +656,28 @@ export default class MasonryList extends React.PureComponent {
 					let ListFooterComponent;
 					let ListFooterComponentStyle;
 
-					if (this.props.columnHeaders.length > index) {
+					if (
+						this.props.columnHeaders != null &&
+						this.props.columnHeaders.length > index
+					) {
 						ListHeaderComponent = this.props.columnHeaders[index];
 					}
-					if (this.props.columnHeaderStyles.length > index) {
+					if (
+						this.props.columnHeaderStyles != null &&
+						this.props.columnHeaderStyles.length > index
+					) {
 						ListHeaderComponentStyle = this.props.columnHeaderStyles[index];
 					}
-					if (this.props.columnFooters.length > index) {
+					if (
+						this.props.columnFooters != null &&
+						this.props.columnFooters.length > index
+					) {
 						ListFooterComponent = this.props.columnFooters[index];
 					}
-					if (this.props.columnFooters.length > index) {
+					if (
+						this.props.columnFooters != null &&
+						this.props.columnFooters.length > index
+					) {
 						ListFooterComponentStyle = this.props.columnFooterStyles[index];
 					}
 

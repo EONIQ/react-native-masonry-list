@@ -188,9 +188,11 @@ class Masonry extends React.PureComponent {
 
     render() {
         if (
-            this.props.emptyView &&
-            Array.isArray(this.props.images) &&
-            this.props.images.length === 0
+            this.props.emptyView != null &&
+            this.props.images == null || (
+                Array.isArray(this.props.images) &&
+                this.props.images.length === 0
+            )
         ) {
             if (isReactComponent(this.props.emptyView)) {
                 return React.createElement(this.props.emptyView);
