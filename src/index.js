@@ -84,7 +84,9 @@ class Masonry extends React.PureComponent {
         sorted: false,
         backgroundColor: "#fff",
         imageContainerStyle: {},
-        rerender: false
+        rerender: false,
+        masonryListProps: {},
+        masonryFlatListColProps: {}
     }
 
     constructor(props) {
