@@ -44,6 +44,7 @@ export default class MasonryList extends React.PureComponent {
 			PropTypes.node
 		]),
 		masonryFlatListColProps: PropTypes.object,
+		masonryListProps: PropTypes.object,
 		rerender: PropTypes.bool,
 
 		customImageComponent: PropTypes.oneOfType([
@@ -597,9 +598,9 @@ export default class MasonryList extends React.PureComponent {
 
 	// (info: {distanceFromEnd: number}) => void
 	_onCallEndReach = (info) => {
-		if (this.props.masonryFlatListColProps &&
-			this.props.masonryFlatListColProps.onEndReached) {
-			this.props.masonryFlatListColProps.onEndReached(info);
+		if (this.props.masonryListProps &&
+			this.props.masonryListProps.onEndReached) {
+			this.props.masonryListProps.onEndReached(info);
 		} else if (this.props.onEndReached) {
 			this.props.onEndReached(info);
 		}
@@ -639,7 +640,7 @@ export default class MasonryList extends React.PureComponent {
 				onEndReachedThreshold={this.props.onEndReachedThreshold}
 				refreshing={this.props.refreshing}
 				onRefresh={this.props.onRefresh}
-				{...this.props.masonryFlatListColProps}
+				{...this.props.masonryListProps}
 				onEndReached={this._onCallEndReach}
 				initialNumToRender={
 					this.props.initialColToRender
@@ -693,6 +694,7 @@ export default class MasonryList extends React.PureComponent {
 							key={`MASONRY-COLUMN-${index}`}
 							colIndex={index}
 							
+							masonryFlatListColProps={masonryFlatListColProps}
 							ListHeaderComponent={ListHeaderComponent}
 							ListHeaderComponentStyle={ListHeaderComponentStyle}
 							ListFooterComponent={ListFooterComponent}

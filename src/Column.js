@@ -43,6 +43,7 @@ export default class Column extends React.PureComponent {
 		ListHeaderComponentStyle: PropTypes.object,
 		ListFooterComponent: PropTypes.node,
 		ListFooterComponentStyle: PropTypes.object,
+		masonryFlatListColProps: PropTypes.object,
 	};
 
 	_renderItem = ({item, index}) => {
@@ -120,6 +121,8 @@ export default class Column extends React.PureComponent {
 				ListHeaderComponentStyle={this.props.ListHeaderComponentStyle}
 				ListFooterComponent={this.props.ListFooterComponent}
 				ListFooterComponentStyle={this.props.ListFooterComponentStyle}
+
+				{...this.props.masonryFlatListColProps}
 			/>
 		);
 	}

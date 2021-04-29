@@ -40,6 +40,7 @@ class Masonry extends React.PureComponent {
         columnFooters: PropTypes.arrayOf(PropTypes.node),
         columnFooterStyles: PropTypes.arrayOf(PropTypes.object),
 
+        masonryListProps: PropTypes.object,
         masonryFlatListColProps: PropTypes.object,
         rerender: PropTypes.bool,
 
@@ -248,6 +249,7 @@ class Masonry extends React.PureComponent {
                     loadingView={this.props.loadingView}
 
                     masonryFlatListColProps={this.props.masonryFlatListColProps}
+                    masonryListProps={this.props.masonryListProps}
 
                     customImageComponent={this.props.customImageComponent}
                     customImageProps={this.props.customImageProps}
