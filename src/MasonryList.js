@@ -625,8 +625,9 @@ export default class MasonryList extends React.PureComponent {
 			}
 		}
 
-		return (
+		return React.forwardRef((props, ref) => (
 			<FlatList
+				ref={ref}
 				style={{
 					flex: 1,
 					padding: (this.props.layoutDimensions.width / 100) * this.props.spacing / 2,
@@ -713,6 +714,6 @@ export default class MasonryList extends React.PureComponent {
 					);
 				}}
 			/>
-		);
+		));
 	}
 }

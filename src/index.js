@@ -11,7 +11,6 @@ import {
 
 class Masonry extends React.PureComponent {
     _mounted = false;
-    // masonryListRef;
 
     static propTypes = {
         itemSource: PropTypes.array,
@@ -208,7 +207,7 @@ class Masonry extends React.PureComponent {
             }
         }
 
-        return (
+        return React.forwardRef((props, ref) => (
             <View style={
                     !this.props.containerWidth
                         ? {flex: 1}
@@ -226,12 +225,7 @@ class Masonry extends React.PureComponent {
                     itemSource={this.props.itemSource}
                     orientation={this.state.orientation}
                     rerender={this.props.rerender}
-                    // ref={(component) => {
-                    //     this.masonryListRef = component;
-                    //     this.props.masonryListRef &&
-                    //         this.props.masonryListRef(component);
-                    // }}
-
+                    ref={ref}
                     images={this.props.images}
                     columns={this.props.columns}
                     spacing={this.props.spacing}
@@ -269,7 +263,7 @@ class Masonry extends React.PureComponent {
                     onRefresh={this.props.onRefresh}
                 />
             </View>
-        );
+        ));
     }
 }
 
