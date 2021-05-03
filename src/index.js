@@ -231,7 +231,6 @@ class Masonry extends React.PureComponent {
                     itemSource={this.props.itemSource}
                     orientation={this.state.orientation}
                     rerender={this.props.rerender}
-                    ref={ref}
                     images={this.props.images}
                     columns={this.props.columns}
                     spacing={this.props.spacing}

@@ -630,7 +630,7 @@ class MasonryList extends React.PureComponent {
 			}
 		}
 
-		return React.forwardRef((props, ref) => (
+		return (
 			<FlatList
 				ref={this.props.listRef}
 				style={{
@@ -719,7 +719,7 @@ class MasonryList extends React.PureComponent {
 					);
 				}}
 			/>
-		));
+		);
 	}
 }
 
