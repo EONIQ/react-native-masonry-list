@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Element } from "react";
 import { FlatList, InteractionManager } from "react-native";
 import PropTypes from "prop-types";
 
@@ -18,10 +18,15 @@ import {
     isElement
 } from "./utils";
 
-export default class MasonryList extends React.PureComponent {
+class MasonryList extends React.PureComponent {
 	_calculatedData = [];
 
 	static propTypes = {
+		listRef: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+		]),
+
 		itemSource: PropTypes.array,
 		images: PropTypes.array.isRequired,
 		layoutDimensions: PropTypes.object.isRequired,
@@ -627,7 +632,7 @@ export default class MasonryList extends React.PureComponent {
 
 		return React.forwardRef((props, ref) => (
 			<FlatList
-				ref={ref}
+				ref={this.props.listRef}
 				style={{
 					flex: 1,
 					padding: (this.props.layoutDimensions.width / 100) * this.props.spacing / 2,
@@ -717,3 +722,5 @@ export default class MasonryList extends React.PureComponent {
 		));
 	}
 }
+
+export default React.forwardRef((props, ref) => <MasonryList listRef={ref} {...props} />);

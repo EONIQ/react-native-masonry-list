@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Element } from "react";
 import { View } from "react-native";
 import PropTypes from "prop-types";
 
@@ -13,6 +13,11 @@ class Masonry extends React.PureComponent {
     _mounted = false;
 
     static propTypes = {
+        listRef: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+		]),
+
         itemSource: PropTypes.array,
         images: PropTypes.array,
         containerWidth: PropTypes.number,
@@ -207,7 +212,7 @@ class Masonry extends React.PureComponent {
             }
         }
 
-        return React.forwardRef((props, ref) => (
+        return (
             <View style={
                     !this.props.containerWidth
                         ? {flex: 1}
@@ -220,6 +225,7 @@ class Masonry extends React.PureComponent {
                     }
                 }}>
                 <MasonryList
+                    ref={this.props.listRef}
                     layoutDimensions={this.state.layoutDimensions}
                     containerWidth={this.props.containerWidth}
                     itemSource={this.props.itemSource}
@@ -263,8 +269,8 @@ class Masonry extends React.PureComponent {
                     onRefresh={this.props.onRefresh}
                 />
             </View>
-        ));
+        );
     }
 }
 
-export default Masonry;
+export default React.forwardRef((props, ref) => <Masonry listRef={ref} {...props} />);
