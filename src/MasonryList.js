@@ -73,10 +73,11 @@ class MasonryList extends React.PureComponent {
         refreshing: PropTypes.bool,
         onRefresh: PropTypes.func,
 
-		columnHeaders: PropTypes.arrayOf(PropTypes.node),
-		columnHeaderStyles: PropTypes.arrayOf(PropTypes.object),
-		columnFooters: PropTypes.arrayOf(PropTypes.node),
-		columnFooterStyles: PropTypes.arrayOf(PropTypes.object),
+		ListHeaderComponent: PropTypes.node,
+		ListHeaderComponentStyle: PropTypes.object,
+		ListFooterComponent: PropTypes.node,
+		ListFooterComponentStyle: PropTypes.object,
+
 		loadingView: PropTypes.oneOfType([
             PropTypes.func,
             PropTypes.node
@@ -84,7 +85,9 @@ class MasonryList extends React.PureComponent {
 	};
 
 	state = {
-		_sortedData: []
+		_sortedData: [],
+		headerHeight: null,
+		footerHeight: null,
 	}
 
 	doneTotal = 0;
@@ -611,24 +614,55 @@ class MasonryList extends React.PureComponent {
 		}
 	}
 
+	_onHeaderLayout = (e) => {
+		this.setState({
+			headerHeight: e?.nativeEvent?.layout?.height,
+		});
+	}
+
+	_onFooterLayout = (e) => {
+		this.setState({
+			footerHeight: e?.nativeEvent?.layout?.height,
+		});
+	}
+
 	render() {
+		const {
+			ListHeaderComponent, ListHeaderComponentStyle, loadingView,
+			images,
+		} = this.props;
+		const {
+			_sortedData, headerHeight, footerHeight,
+		} = this.state;
+
 		if (
-			this.props.loadingView != null &&
-			this.props.images != null &&
-			this.props.images.length !== 0 &&
-			this.state._sortedData != null &&
-			this.state._sortedData.length === 0
+			loadingView != null &&
+			images != null &&
+			images.length !== 0 &&
+			_sortedData != null &&
+			_sortedData.length === 0
 		) {
-			if (isReactComponent(this.props.loadingView)) {
-					return React.createElement(this.props.loadingView);
+			if (isReactComponent(loadingView)) {
+					return React.createElement(loadingView);
 			}
-			else if (typeof this.props.loadingView === "function") {
-					return this.props.loadingView();
+			else if (typeof loadingView === "function") {
+					return loadingView();
 			}
-			else if (isElement(this.props.loadingView)) {
-					return this.props.loadingView;
+			else if (isElement(loadingView)) {
+					return loadingView;
 			}
 		}
+
+		const header = ListHeaderComponent != null ? (
+			<View onLayout={this._onHeaderLayout} style={ListHeaderComponentStyle}>
+				{ListHeaderComponent}
+			</View>
+		) : null;
+		const footer = ListFooterComponent != null ? (
+			<View onLayout={this._onFooterLayout} style={ListFooterComponentStyle}>
+				{ListFooterComponent}
+			</View>
+		) : null;
 
 		return (
 			<FlatList
@@ -658,36 +692,15 @@ class MasonryList extends React.PureComponent {
 				}}
 				data={this.state._sortedData}
 				renderItem={({ item, index }) => {
-					let ListHeaderComponent;
-					let ListHeaderComponentStyle;
-					let ListFooterComponent;
-					let ListFooterComponentStyle;
-
-					if (
-						this.props.columnHeaders != null &&
-						this.props.columnHeaders.length > index
-					) {
-						ListHeaderComponent = this.props.columnHeaders[index];
+					let style = {};
+					if (index > 0) {
+						if (headerHeight != null && headerHeight > 0) {
+							style.marginTop = headerHeight;
+						}
+						if (footerHeight != null && footerHeight > 0) {
+							style.marginBottom = footerHeight;
+						}
 					}
-					if (
-						this.props.columnHeaderStyles != null &&
-						this.props.columnHeaderStyles.length > index
-					) {
-						ListHeaderComponentStyle = this.props.columnHeaderStyles[index];
-					}
-					if (
-						this.props.columnFooters != null &&
-						this.props.columnFooters.length > index
-					) {
-						ListFooterComponent = this.props.columnFooters[index];
-					}
-					if (
-						this.props.columnFooters != null &&
-						this.props.columnFooters.length > index
-					) {
-						ListFooterComponentStyle = this.props.columnFooterStyles[index];
-					}
-
 					return (
 						<Column
 							data={item}
@@ -701,10 +714,9 @@ class MasonryList extends React.PureComponent {
 							colIndex={index}
 							
 							masonryFlatListColProps={this.props.masonryFlatListColProps}
-							ListHeaderComponent={ListHeaderComponent}
-							ListHeaderComponentStyle={ListHeaderComponentStyle}
-							ListFooterComponent={ListFooterComponent}
-							ListFooterComponentStyle={ListFooterComponentStyle}
+							ListHeaderComponent={index === 0 && header}
+							ListFooterComponent={index === 0 && footer}
+							style={style}
 
 							customImageComponent={this.props.customImageComponent}
 							customImageProps={this.props.customImageProps}

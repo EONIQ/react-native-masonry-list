@@ -39,10 +39,10 @@ class Masonry extends React.PureComponent {
             PropTypes.node
         ]),
 
-        columnHeaders: PropTypes.arrayOf(PropTypes.node),
-        columnHeaderStyles: PropTypes.arrayOf(PropTypes.object),
-        columnFooters: PropTypes.arrayOf(PropTypes.node),
-        columnFooterStyles: PropTypes.arrayOf(PropTypes.object),
+        ListHeaderComponent: PropTypes.node,
+		ListHeaderComponentStyle: PropTypes.object,
+		ListFooterComponent: PropTypes.node,
+		ListFooterComponentStyle: PropTypes.object,
 
         masonryListProps: PropTypes.object,
         masonryFlatListColProps: PropTypes.object,
@@ -243,10 +243,10 @@ class Masonry extends React.PureComponent {
                     renderIndividualHeader={this.props.renderIndividualHeader}
                     renderIndividualFooter={this.props.renderIndividualFooter}
 
-                    columnHeaders={this.props.columnHeaders}
-                    columnHeaderStyles={this.props.columnHeaderStyles}
-                    columnFooters={this.props.columnFooters}
-                    columnFooterStyles={this.props.columnFooterStyles}
+                    ListHeaderComponent={this.props.ListHeaderComponent}
+                    ListHeaderComponentStyle={this.props.ListHeaderComponentStyle}
+                    ListFooterComponent={this.props.ListFooterComponent}
+                    ListFooterComponentStyle={this.props.ListFooterComponentStyle}
                     loadingView={this.props.loadingView}
 
                     masonryFlatListColProps={this.props.masonryFlatListColProps}

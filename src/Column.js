@@ -39,6 +39,7 @@ export default class Column extends React.PureComponent {
 			PropTypes.node
 		]),
 
+		style: PropTypes.object,
 		ListHeaderComponent: PropTypes.node,
 		ListHeaderComponentStyle: PropTypes.object,
 		ListFooterComponent: PropTypes.node,
@@ -102,7 +103,7 @@ export default class Column extends React.PureComponent {
 	render() {
 		return (
 			<FlatList
-				style={{flex: 1}}
+				style={[{ flex: 1 }, this.props.style]}
 				contentContainerStyle={{
 					width: this.props.layoutDimensions.columnWidth,
 					overflow: "hidden",
