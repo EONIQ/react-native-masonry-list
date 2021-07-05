@@ -706,8 +706,8 @@ class MasonryList extends React.PureComponent {
 						) {
 							style.marginLeft = -this.props.layoutDimensions.columnWidth * ((
 								this.props.initialColToRender
-									? this.props.initialColToRender - 1
-									: this.props.columns - 1
+									? this.props.initialColToRender
+									: this.props.columns
 							) - index);
 						}
 					}
