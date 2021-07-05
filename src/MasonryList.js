@@ -714,8 +714,8 @@ class MasonryList extends React.PureComponent {
 							colIndex={index}
 							
 							masonryFlatListColProps={this.props.masonryFlatListColProps}
-							ListHeaderComponent={index === 0 && header}
-							ListFooterComponent={index === 0 && footer}
+							ListHeaderComponent={index === 0 ? header : null}
+							ListFooterComponent={index === 0 ? footer : null}
 							style={style}
 
 							customImageComponent={this.props.customImageComponent}
