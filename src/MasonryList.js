@@ -629,7 +629,7 @@ class MasonryList extends React.PureComponent {
 	render() {
 		const {
 			ListHeaderComponent, ListHeaderComponentStyle, loadingView,
-			images,
+			images, ListFooterComponent, ListFooterComponentStyle,
 		} = this.props;
 		const {
 			_sortedData, headerHeight, footerHeight,
