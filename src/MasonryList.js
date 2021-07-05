@@ -701,12 +701,17 @@ class MasonryList extends React.PureComponent {
 							style.marginBottom = footerHeight;
 						}
 
-						style.marginLeft = -this.props.layoutDimensions.columnWidth * (
-							this.props.initialColToRender
-								? this.props.initialColToRender - 1
-								: this.props.columns - 1
-						);
+						if (
+							(header != null || footer != null) && index > 0
+						) {
+							style.marginLeft = -this.props.layoutDimensions.columnWidth * ((
+								this.props.initialColToRender
+									? this.props.initialColToRender - 1
+									: this.props.columns - 1
+							) - index);
+						}
 					}
+
 					return (
 						<Column
 							data={item}
