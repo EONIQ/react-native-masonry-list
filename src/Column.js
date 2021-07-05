@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, Platform } from "react-native";
 import PropTypes from "prop-types";
 
 import { getItemSource } from "./utils";
@@ -115,7 +115,7 @@ export default class Column extends React.PureComponent {
 					return this._keyExtractor(item, index, this.props.colIndex);
 				}}
 				initialNumToRender={this.props.initialNumInColsToRender}
-				removeClippedSubviews={false}
+				removeClippedSubviews={Platform.OS === 'ios'}
 				renderItem={this._renderItem}
 				
 				ListHeaderComponent={this.props.ListHeaderComponent}

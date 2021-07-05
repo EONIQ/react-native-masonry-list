@@ -1,5 +1,5 @@
 import React, { Element } from "react";
-import { View, FlatList, InteractionManager } from "react-native";
+import { View, FlatList, Platform, InteractionManager } from "react-native";
 import PropTypes from "prop-types";
 
 import { resolveImage, resolveLocal } from "./lib/model";
@@ -676,7 +676,7 @@ class MasonryList extends React.PureComponent {
 					flexDirection: "row",
 					width: "100%"
 				}, this.props.listContainerStyle]}
-				removeClippedSubviews={false}
+				removeClippedSubviews={Platform.OS === 'ios'}
 				onEndReachedThreshold={this.props.onEndReachedThreshold}
 				refreshing={this.props.refreshing}
 				onRefresh={this.props.onRefresh}
