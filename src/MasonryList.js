@@ -692,13 +692,7 @@ class MasonryList extends React.PureComponent {
 				}}
 				data={this.state._sortedData}
 				renderItem={({ item, index }) => {
-					let style = {
-						marginLeft: -this.props.layoutDimensions.columnWidth * (
-							this.props.initialColToRender
-								? this.props.initialColToRender - 1
-								: this.props.columns - 1
-						),
-					};
+					let style = {};
 					if (index > 0) {
 						if (headerHeight != null && headerHeight > 0) {
 							style.marginTop = headerHeight;
@@ -706,6 +700,12 @@ class MasonryList extends React.PureComponent {
 						if (footerHeight != null && footerHeight > 0) {
 							style.marginBottom = footerHeight;
 						}
+
+						style.marginLeft = -this.props.layoutDimensions.columnWidth * (
+							this.props.initialColToRender
+								? this.props.initialColToRender - 1
+								: this.props.columns - 1
+						);
 					}
 					return (
 						<Column
