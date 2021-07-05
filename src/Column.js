@@ -101,6 +101,9 @@ export default class Column extends React.PureComponent {
 	}
 
 	render() {
+		console.log('this.props.ListHeaderComponent', this.props.colIndex, this.props.ListHeaderComponent);
+		console.log('this.props.ListFooterComponent', this.props.colIndex, this.props.ListFooterComponent);
+
 		return (
 			<FlatList
 				style={[{ flex: 1 }, this.props.style]}
