@@ -101,9 +101,6 @@ export default class Column extends React.PureComponent {
 	}
 
 	render() {
-		console.log('this.props.layoutDimensions.columnWidth', this.props.layoutDimensions.columnWidth);
-		console.log('style', this.props.style);
-
 		return (
 			<FlatList
 				style={[{ flex: 1 }, this.props.style]}
@@ -118,7 +115,7 @@ export default class Column extends React.PureComponent {
 					return this._keyExtractor(item, index, this.props.colIndex);
 				}}
 				initialNumToRender={this.props.initialNumInColsToRender}
-				removeClippedSubviews={true}
+				removeClippedSubviews={false}
 				renderItem={this._renderItem}
 				
 				ListHeaderComponent={this.props.ListHeaderComponent}
