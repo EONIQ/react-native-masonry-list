@@ -102,6 +102,7 @@ export default class Column extends React.PureComponent {
 
 	render() {
 		console.log('this.props.layoutDimensions.columnWidth', this.props.layoutDimensions.columnWidth);
+		console.log('style', style);
 
 		return (
 			<FlatList
