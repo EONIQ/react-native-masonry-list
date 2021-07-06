@@ -701,7 +701,7 @@ class MasonryList extends React.PureComponent {
 							style.marginBottom = footerHeight;
 						}
 
-						const numerOfColumn = this.props.initialColToRender
+						const numberOfColumn = this.props.initialColToRender
 							? this.props.initialColToRender
 							: this.props.columns;
 						if (
