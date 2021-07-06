@@ -690,10 +690,10 @@ class MasonryList extends React.PureComponent {
 				keyExtractor={(item, index) => {
 					return "COLUMN-" + index.toString() + "/"; // + (this.props.columns - 1);
 				}}
-				data={this.state._sortedData}
+				data={this.state._sortedData.reverse()}
 				renderItem={({ item, index }) => {
 					let style = {};
-					if (index > 0) {
+					if (index < this.state._sortedData.length - 1) {
 						if (headerHeight != null && headerHeight > 0) {
 							style.marginTop = headerHeight;
 						}
@@ -701,14 +701,16 @@ class MasonryList extends React.PureComponent {
 							style.marginBottom = footerHeight;
 						}
 
+						const numerOfColumn = this.props.initialColToRender
+							? this.props.initialColToRender
+							: this.props.columns;
 						if (
-							(header != null || footer != null) && index > 0
+							(header != null || footer != null)
 						) {
-							style.marginLeft = -this.props.layoutDimensions.columnWidth * ((
-								this.props.initialColToRender
-									? this.props.initialColToRender
-									: this.props.columns
-							) - index);
+							style.marginLeft = this.props.layoutDimensions.columnWidth * 
+								(numberOfColumn - 1) - (index * -2)
+								/ numberOfColumn
+							;
 						}
 					}
 
@@ -725,8 +727,8 @@ class MasonryList extends React.PureComponent {
 							colIndex={index}
 							
 							masonryFlatListColProps={this.props.masonryFlatListColProps}
-							ListHeaderComponent={index === 0 ? header : null}
-							ListFooterComponent={index === 0 ? footer : null}
+							ListHeaderComponent={index === this.state._sortedData.length - 1 ? header : null}
+							ListFooterComponent={index === this.state._sortedData.length - 1 ? footer : null}
 							style={style}
 
 							customImageComponent={this.props.customImageComponent}
